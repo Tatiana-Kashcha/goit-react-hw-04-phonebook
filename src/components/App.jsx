@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -7,33 +7,51 @@ import * as s from './App.styled';
 
 const STORAGE_KEY = 'contact-list';
 
-class App extends Component {
-  state = {
-    contacts: [],
-    filter: '',
-  };
+const App = () => {
+  const [contacts, setContacts] = useState([]);
+  const [filter, setFilter] = useState('');
 
-  componentDidMount() {
+  // const useLocalStorage = (key, defaultValue) => {
+  //   const [state, setState] = useState(() => {
+  //     return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
+  //   });
+
+  //   useEffect(() => {
+  //     window.localStorage.setItem(key, JSON.stringify(state));
+  //   }, [key, setState]);
+
+  //   return [state, setState];
+  // };
+
+  useEffect(() => {
     if (localStorage.getItem(STORAGE_KEY)) {
-      this.setState({
-        contacts: JSON.parse(localStorage.getItem(STORAGE_KEY)),
-      });
+      setContacts(JSON.parse(localStorage.getItem(STORAGE_KEY)));
     }
-  }
+  }, []);
 
-  componentDidUpdate(_, prevState) {
-    if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.contacts));
-    }
-  }
+  // componentDidMount() {
+  //   if (localStorage.getItem(STORAGE_KEY)) {
+  //     this.setState({
+  //       contacts: JSON.parse(localStorage.getItem(STORAGE_KEY)),
+  //     });
+  //   }
+  // }
 
-  addUser = data => {
+  useEffect(() => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+  }, [STORAGE_KEY, contacts]);
+
+  // componentDidUpdate(_, prevState) {
+  //   if (prevState.contacts !== this.state.contacts) {
+  //     localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.contacts));
+  //   }
+  // }
+
+  const addUser = data => {
     const newUser = {
       id: nanoid(),
       ...data,
     };
-
-    const { contacts } = this.state;
 
     const isDuplicateUser = contacts.some(
       contact => contact.name.toLowerCase() === data.name.toLowerCase()
@@ -44,50 +62,46 @@ class App extends Component {
       return;
     }
 
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newUser],
-    }));
+    setContacts(prev => [...prev, newUser]);
+    // this.setState(prevState => ({
+    //   contacts: [...prevState.contacts, newUser],
+    // }));
   };
 
-  deleteUser = id => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(el => el.id !== id),
-    }));
+  const deleteUser = id => {
+    setContacts(contacts.filter(el => el.id !== id));
+    // this.setState(prevState => ({
+    //   contacts: prevState.contacts.filter(el => el.id !== id),
+    // }));
   };
 
-  handleCangeFilter = e => {
-    this.setState({ filter: e.target.value });
+  const handleCangeFilter = e => {
+    setFilter({ filter: e.target.value });
+    // this.setState({ filter: e.target.value });
   };
 
-  searchUser = () => {
-    const { contacts, filter } = this.state;
-
+  const searchUserBook = () => {
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
-  render() {
-    const { filter } = this.state;
-    const searchUser = this.searchUser();
+  const searchUser = searchUserBook();
 
-    return (
-      <s.Container>
-        <h1>Phonebook</h1>
-        <ContactForm addUser={this.addUser} />
-        {this.state.contacts.length > 0 && (
-          <>
-            <h2>Contacts</h2>
-            <Filter
-              filter={filter}
-              handleCangeFilter={this.handleCangeFilter}
-            />
-            <ContactList data={searchUser} deleteUser={this.deleteUser} />
-          </>
-        )}
-      </s.Container>
-    );
-  }
-}
+  return (
+    <s.Container>
+      <h1>Phonebook</h1>
+      <ContactForm addUser={addUser} />
+      {contacts.length > 0 && (
+        <>
+          <h2>Contacts</h2>
+          <Filter filter={filter} handleCangeFilter={handleCangeFilter} />
+          <ContactList data={searchUser} deleteUser={deleteUser} />
+        </>
+      )}
+    </s.Container>
+  );
+};
 
 export default App;
+// {this.state.contacts.length > 0 && (
