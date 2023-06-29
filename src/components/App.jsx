@@ -39,7 +39,7 @@ const App = () => {
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
-  }, [STORAGE_KEY, contacts]);
+  }, [contacts]);
 
   // componentDidUpdate(_, prevState) {
   //   if (prevState.contacts !== this.state.contacts) {

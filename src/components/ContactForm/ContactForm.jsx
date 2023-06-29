@@ -25,7 +25,7 @@ export default function ContactForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    this.props.addUser({ ...this.state });
+    this.props.addUser({ ...name, ...number });
     reset();
   };
 
