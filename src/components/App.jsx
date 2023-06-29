@@ -24,8 +24,8 @@ const App = () => {
   // };
 
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY)) {
-      setContacts(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+    if (window.localStorage.getItem(STORAGE_KEY)) {
+      setContacts(JSON.parse(window.localStorage.getItem(STORAGE_KEY)));
     }
   }, []);
 
@@ -40,12 +40,6 @@ const App = () => {
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
-
-  // componentDidUpdate(_, prevState) {
-  //   if (prevState.contacts !== this.state.contacts) {
-  //     localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.contacts));
-  //   }
-  // }
 
   const addUser = data => {
     const newUser = {
@@ -63,30 +57,34 @@ const App = () => {
     }
 
     setContacts(prev => [...prev, newUser]);
-    // this.setState(prevState => ({
-    //   contacts: [...prevState.contacts, newUser],
-    // }));
   };
 
   const deleteUser = id => {
     setContacts(contacts.filter(el => el.id !== id));
-    // this.setState(prevState => ({
-    //   contacts: prevState.contacts.filter(el => el.id !== id),
-    // }));
   };
 
   const handleCangeFilter = e => {
-    setFilter({ filter: e.target.value });
-    // this.setState({ filter: e.target.value });
+    setFilter(e.target.value.trim());
   };
 
   const searchUserBook = () => {
+    const normalised = filter.toLowerCase();
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
+      contact.name.toLowerCase().includes(normalised)
     );
   };
 
   const searchUser = searchUserBook();
+
+  // const searchContact = () => {
+  //   const normalisedFilter = filter.toLowerCase();
+
+  //   const searchedContacts = contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalisedFilter)
+  //   );
+
+  //   return searchedContacts;
+  // };
 
   return (
     <s.Container>
@@ -104,4 +102,3 @@ const App = () => {
 };
 
 export default App;
-// {this.state.contacts.length > 0 && (

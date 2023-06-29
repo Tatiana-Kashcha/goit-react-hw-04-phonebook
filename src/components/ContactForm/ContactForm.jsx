@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as s from './ContactForm.styled';
 import PropTypes from 'prop-types';
 
-export default function ContactForm() {
+export default function ContactForm({ addUser }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -25,7 +25,7 @@ export default function ContactForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    this.props.addUser({ ...name, ...number });
+    addUser({ name, number });
     reset();
   };
 
