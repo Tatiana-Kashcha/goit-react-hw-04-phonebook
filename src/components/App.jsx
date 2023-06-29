@@ -8,7 +8,9 @@ import * as s from './App.styled';
 const STORAGE_KEY = 'contact-list';
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(() => {
+    return JSON.parse(window.localStorage.getItem(STORAGE_KEY)) ?? [];
+  });
   const [filter, setFilter] = useState('');
 
   // const useLocalStorage = (key, defaultValue) => {
@@ -22,20 +24,6 @@ const App = () => {
 
   //   return [state, setState];
   // };
-
-  useEffect(() => {
-    if (window.localStorage.getItem(STORAGE_KEY)) {
-      setContacts(JSON.parse(window.localStorage.getItem(STORAGE_KEY)));
-    }
-  }, []);
-
-  // componentDidMount() {
-  //   if (localStorage.getItem(STORAGE_KEY)) {
-  //     this.setState({
-  //       contacts: JSON.parse(localStorage.getItem(STORAGE_KEY)),
-  //     });
-  //   }
-  // }
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
@@ -75,16 +63,6 @@ const App = () => {
   };
 
   const searchUser = searchUserBook();
-
-  // const searchContact = () => {
-  //   const normalisedFilter = filter.toLowerCase();
-
-  //   const searchedContacts = contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(normalisedFilter)
-  //   );
-
-  //   return searchedContacts;
-  // };
 
   return (
     <s.Container>
