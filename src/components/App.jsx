@@ -13,18 +13,6 @@ const App = () => {
   });
   const [filter, setFilter] = useState('');
 
-  // const useLocalStorage = (key, defaultValue) => {
-  //   const [state, setState] = useState(() => {
-  //     return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
-  //   });
-
-  //   useEffect(() => {
-  //     window.localStorage.setItem(key, JSON.stringify(state));
-  //   }, [key, setState]);
-
-  //   return [state, setState];
-  // };
-
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
