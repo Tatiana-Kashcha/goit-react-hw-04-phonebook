@@ -11,7 +11,7 @@ const App = () => {
   const [contacts, setContacts] = useState(() => {
     return JSON.parse(window.localStorage.getItem(STORAGE_KEY)) ?? [];
   });
-  //nnnnnnnnn
+
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
