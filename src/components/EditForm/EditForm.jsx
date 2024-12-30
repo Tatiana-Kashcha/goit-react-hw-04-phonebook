@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import * as s from './ContactForm.styled';
-import PropTypes from 'prop-types';
 
-export default function ContactForm({ addUser }) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+import * as s from './EditForm.styled';
+
+export const EditForm = ({ editName, editNumber, id, closeModal }) => {
+  const [name, setName] = useState(editName);
+  const [number, setNumber] = useState(editNumber);
+  const [buttonDisabled, setbuttonDisabled] = useState(true);
 
   const handleCange = evt => {
     const { name, value } = evt.target;
@@ -21,12 +22,17 @@ export default function ContactForm({ addUser }) {
       default:
         break;
     }
+    if (name !== editName || number !== editNumber) {
+      setbuttonDisabled(false);
+    }
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    addUser({ name, number });
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    // dispatch(editContact({ name, number, id }));
     reset();
+    closeModal();
   };
 
   const reset = () => {
@@ -41,8 +47,6 @@ export default function ContactForm({ addUser }) {
         <input
           type="text"
           name="name"
-          title="Name may contain only letters, apostrophe, dash and spaces. 
-            For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
           onChange={handleCange}
@@ -54,18 +58,15 @@ export default function ContactForm({ addUser }) {
         <input
           type="number"
           name="number"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           value={number}
           onChange={handleCange}
         />
       </s.Label>
 
-      <button type="submit">Add contact</button>
+      <button disabled={buttonDisabled} type="submit">
+        Change
+      </button>
     </s.Form>
   );
-}
-
-ContactForm.propTypes = {
-  addUser: PropTypes.func.isRequired,
 };

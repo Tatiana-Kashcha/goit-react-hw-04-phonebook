@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
-import { Filter } from 'components/Filter/Filter';
+
 import * as s from './App.styled';
 
 const STORAGE_KEY = 'contact-list';
@@ -11,7 +11,6 @@ const App = () => {
   const [contacts, setContacts] = useState(() => {
     return JSON.parse(window.localStorage.getItem(STORAGE_KEY)) ?? [];
   });
-  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
@@ -39,19 +38,6 @@ const App = () => {
     setContacts(contacts.filter(el => el.id !== id));
   };
 
-  const handleCangeFilter = e => {
-    setFilter(e.target.value.trim());
-  };
-
-  const searchUserBook = () => {
-    const normalised = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalised)
-    );
-  };
-
-  const searchUser = searchUserBook();
-
   return (
     <s.Container>
       <h1>Phonebook</h1>
@@ -59,8 +45,7 @@ const App = () => {
       {contacts.length > 0 && (
         <>
           <h2>Contacts</h2>
-          <Filter filter={filter} handleCangeFilter={handleCangeFilter} />
-          <ContactList data={searchUser} deleteUser={deleteUser} />
+          <ContactList data={contacts} deleteUser={deleteUser} />
         </>
       )}
     </s.Container>

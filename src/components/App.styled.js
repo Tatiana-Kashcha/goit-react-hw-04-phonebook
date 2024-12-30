@@ -5,7 +5,7 @@ export const Container = styled.div`
   padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 400px;
+  width: 700px;
   h1,
   h2 {
     padding-top: 20px;
