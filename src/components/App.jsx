@@ -13,6 +13,7 @@ const App = () => {
   });
   const [filter, setFilter] = useState('');
 
+  /////
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
