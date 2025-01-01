@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 export const ContactListItems = ({
   user: { name, number, id },
   deleteUser,
+  getAllContacts,
 }) => {
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -37,6 +38,7 @@ export const ContactListItems = ({
             editNumber={number}
             id={id}
             closeModal={closeModal}
+            getAllContacts={getAllContacts}
           />
         </Modal>
       )}

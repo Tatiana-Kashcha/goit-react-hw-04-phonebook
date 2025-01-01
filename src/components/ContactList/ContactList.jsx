@@ -2,12 +2,16 @@ import { ContactListItems } from '../ContactListItems/ContactListItems';
 import * as s from './ContactList.styled';
 import PropTypes from 'prop-types';
 
-export const ContactList = ({ data, deleteUser }) => {
+export const ContactList = ({ data, deleteUser, getAllContacts }) => {
   return (
     <s.List>
       {data.map(user => (
         <s.ListItems key={user.id}>
-          <ContactListItems user={user} deleteUser={deleteUser} />
+          <ContactListItems
+            user={user}
+            deleteUser={deleteUser}
+            getAllContacts={getAllContacts}
+          />
         </s.ListItems>
       ))}
     </s.List>

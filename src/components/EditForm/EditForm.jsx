@@ -1,8 +1,17 @@
+import { db } from '../../firebase/firebaseConfig';
+import { setDoc, doc } from 'firebase/firestore';
+
 import { useState } from 'react';
 
 import * as s from './EditForm.styled';
 
-export const EditForm = ({ editName, editNumber, id, closeModal }) => {
+export const EditForm = ({
+  editName,
+  editNumber,
+  id,
+  closeModal,
+  getAllContacts,
+}) => {
   const [name, setName] = useState(editName);
   const [number, setNumber] = useState(editNumber);
   const [buttonDisabled, setbuttonDisabled] = useState(true);
@@ -30,7 +39,14 @@ export const EditForm = ({ editName, editNumber, id, closeModal }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // dispatch(editContact({ name, number, id }));
+    try {
+      const contactRef = doc(db, 'contacts', id);
+      setDoc(contactRef, { name, number, id }, { merge: true });
+    } catch (error) {
+      console.log(error);
+    }
+
+    getAllContacts();
     reset();
     closeModal();
   };

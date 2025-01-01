@@ -3,7 +3,7 @@ import ContactForm from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 
 import { db } from '../firebase/firebaseConfig';
-import { collection, addDoc, getDocs, doc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc } from 'firebase/firestore';
 
 import * as s from './App.styled';
 
@@ -56,7 +56,11 @@ const App = () => {
       {contacts.length > 0 && (
         <>
           <h2>Contacts</h2>
-          <ContactList data={contacts} deleteUser={deleteUser} />
+          <ContactList
+            data={contacts}
+            deleteUser={deleteUser}
+            getAllContacts={getAllContacts}
+          />
         </>
       )}
     </s.Container>
