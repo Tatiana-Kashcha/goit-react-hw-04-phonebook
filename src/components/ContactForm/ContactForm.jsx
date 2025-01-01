@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as s from './ContactForm.styled';
 import PropTypes from 'prop-types';
 
-export default function ContactForm({ addUser }) {
+export const ContactForm = ({ addUser }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -64,7 +64,7 @@ export default function ContactForm({ addUser }) {
       <button type="submit">Add contact</button>
     </s.Form>
   );
-}
+};
 
 ContactForm.propTypes = {
   addUser: PropTypes.func.isRequired,
