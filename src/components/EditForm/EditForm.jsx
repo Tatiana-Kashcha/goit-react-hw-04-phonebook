@@ -36,12 +36,12 @@ export const EditForm = ({
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     try {
       const contactRef = doc(db, 'contacts', id);
-      setDoc(contactRef, { name, number, id }, { merge: true });
+      await setDoc(contactRef, { name, number, id }, { merge: true });
     } catch (error) {
       console.log(error);
     }

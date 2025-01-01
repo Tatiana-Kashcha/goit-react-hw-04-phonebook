@@ -3,7 +3,13 @@ import ContactForm from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 
 import { db } from '../firebase/firebaseConfig';
-import { collection, addDoc, getDocs, deleteDoc } from 'firebase/firestore';
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+} from 'firebase/firestore';
 
 import * as s from './App.styled';
 
@@ -45,8 +51,13 @@ const App = () => {
     getAllContacts();
   }, []);
 
-  const deleteUser = id => {
-    // setContacts(contacts.filter(el => el.id !== id));
+  const deleteUser = async id => {
+    await deleteDoc(doc(db, 'contacts', id));
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+    getAllContacts();
   };
 
   return (
