@@ -6,6 +6,8 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 500px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const ButtonAuth = styled.button`

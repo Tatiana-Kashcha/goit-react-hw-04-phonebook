@@ -23,8 +23,8 @@ export const AuthProvider = () => {
     try {
       const credentials = await signInWithPopup(auth, googleAuthProvider);
       setUser(credentials.user);
-    } catch (err) {
-      console.error('Error during sign-in:', err);
+    } catch (error) {
+      console.log(error);
     }
   };
 
