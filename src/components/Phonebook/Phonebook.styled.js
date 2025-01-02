@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
+export const Section = styled.section`
+  padding: 40px 0;
+`;
+
 export const Div = styled.div`
-  padding-top: 40px;
   display: flex;
   justify-content: space-between;
 `;

@@ -62,23 +62,25 @@ export const Phonebook = () => {
   };
 
   return (
-    <s.Container>
-      <s.Div>
-        <h1>Phonebook</h1>
-        <Logout />
-      </s.Div>
+    <s.Section>
+      <s.Container>
+        <s.Div>
+          <h1>Phonebook</h1>
+          <Logout />
+        </s.Div>
 
-      <ContactForm addUser={addUser} />
-      {contacts.length > 0 && (
-        <>
-          <h2>Contacts</h2>
-          <ContactList
-            data={contacts}
-            deleteUser={deleteUser}
-            getAllContacts={getAllContacts}
-          />
-        </>
-      )}
-    </s.Container>
+        <ContactForm addUser={addUser} />
+        {contacts.length > 0 && (
+          <>
+            <h2>Contacts</h2>
+            <ContactList
+              data={contacts}
+              deleteUser={deleteUser}
+              getAllContacts={getAllContacts}
+            />
+          </>
+        )}
+      </s.Container>
+    </s.Section>
   );
 };
