@@ -4,13 +4,14 @@ import * as s from './Logout.styled';
 export const Logout = () => {
   const auth = getAuth();
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      console.log('true');
-    } catch (error) {
-      console.log(error);
-    }
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log('Sign-out successful');
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (

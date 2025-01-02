@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const ButtonAuth = styled.button`
-  padding: 4px 8px;
+  padding: 10px 8px;
   font-size: 14px;
   color: rgb(34 155 15);
   font-weight: bold;
