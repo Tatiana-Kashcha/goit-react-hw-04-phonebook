@@ -33,8 +33,10 @@ export const AuthProvider = () => {
   }
 
   return (
-    <s.Container>
-      <s.ButtonAuth onClick={handleSignIn}>Login</s.ButtonAuth>
-    </s.Container>
+    <s.Section>
+      <s.Container>
+        <s.ButtonAuth onClick={handleSignIn}>Login</s.ButtonAuth>
+      </s.Container>
+    </s.Section>
   );
 };

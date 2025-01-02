@@ -7,6 +7,7 @@ export const Logout = () => {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
+        window.location.reload();
         console.log('Sign-out successful');
       })
       .catch(error => {
