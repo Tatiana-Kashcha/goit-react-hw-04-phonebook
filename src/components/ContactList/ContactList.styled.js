@@ -1,19 +1,12 @@
 import styled from 'styled-components';
 
-export const List = styled.ul`
+export const List = styled.ol`
   margin-top: 15px;
+  padding: 0 25px;
 `;
 
 export const ListItems = styled.li`
-  padding: 5px 25px;
+  padding: 5px 0;
   margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  &::before {
-    content: '';
-    background: black;
-    width: 6px;
-    height: 6px;
-    border-radius: 100%;
-  }
+  border-bottom: solid 1px gray;
 `;
