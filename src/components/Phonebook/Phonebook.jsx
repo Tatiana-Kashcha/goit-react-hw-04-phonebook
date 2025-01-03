@@ -42,7 +42,11 @@ export const Phonebook = () => {
         id: contact.id,
         ...contact.data(),
       }));
-      setContacts(allContacts);
+
+      const sortedContacts = [...allContacts].sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+      );
+      setContacts(sortedContacts);
     } catch (error) {
       console.log(error);
     }
