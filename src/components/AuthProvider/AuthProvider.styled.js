@@ -9,9 +9,9 @@ export const Container = styled.div`
   padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 500px;
-  display: flex;
-  justify-content: center;
+  width: 400px;
+  /* display: flex;
+  justify-content: center; */
 `;
 
 export const ButtonAuth = styled.button`
