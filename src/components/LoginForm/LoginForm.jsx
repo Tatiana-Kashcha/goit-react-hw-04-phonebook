@@ -16,6 +16,7 @@ export const LoginForm = () => {
       );
 
       console.log(userCredential);
+      console.log(userCredential.user.displayName);
     } catch (error) {
       console.log(error);
     }
