@@ -3,7 +3,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Logout } from 'components/Logout/Logout';
 
-import { db } from '../../firebase/firebaseConfig';
+import { db, storage } from '../../firebase/firebaseConfig';
 import {
   collection,
   addDoc,
@@ -11,18 +11,15 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import noImageIcon from '../../images/avatar.png';
 import * as s from './Phonebook.styled';
 
 export const Phonebook = ({ userName, avatar }) => {
   const [contacts, setContacts] = useState([]);
-
-  // const myPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
-  // console.log(myPreset);
-
-  // const avatarNew =
-  //   'https://res.cloudinary.com/dqcmd364w/image/upload/v1729264893/girl-1_kwvcbl.png';
+  const [photoURL, setPhotoURL] = useState('');
+  console.log(photoURL);
 
   const addUser = async data => {
     try {
@@ -72,6 +69,25 @@ export const Phonebook = ({ userName, avatar }) => {
     getAllContacts();
   };
 
+  const uploadFile = async file => {
+    try {
+      // Створення референсу до місця збереження
+      const storageRef = ref(storage, `profile_photos/${file.name}`);
+
+      // Завантаження файлу
+      const snapshot = await uploadBytes(storageRef, file);
+
+      // Отримання URL завантаженого файлу
+      const downloadURL = await getDownloadURL(snapshot.ref);
+
+      console.log('Файл завантажено:', downloadURL);
+      setPhotoURL(downloadURL);
+      // return downloadURL;
+    } catch (error) {
+      console.error('Помилка завантаження файлу:', error);
+    }
+  };
+
   return (
     <s.Section>
       <s.Container>
@@ -85,6 +101,7 @@ export const Phonebook = ({ userName, avatar }) => {
               <s.Avatar
                 src={avatar ? avatar : noImageIcon}
                 alt={avatar ? `Avatar ${userName}` : 'Default avatar'}
+                onClick={uploadFile}
               />
             </s.Thumb>
 
