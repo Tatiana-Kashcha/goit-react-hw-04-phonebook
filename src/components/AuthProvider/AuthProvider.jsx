@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
-import { app, googleAuthProvider } from '../../firebase/firebaseConfig';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { app } from '../../firebase/firebaseConfig';
 import { Phonebook } from 'components/Phonebook/Phonebook';
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { LoginForm } from 'components/LoginForm/LoginForm';
