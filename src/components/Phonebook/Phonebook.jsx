@@ -12,10 +12,17 @@ import {
   doc,
 } from 'firebase/firestore';
 
+import noImageIcon from '../../images/avatar.png';
 import * as s from './Phonebook.styled';
 
-export const Phonebook = () => {
+export const Phonebook = ({ userName, avatar }) => {
   const [contacts, setContacts] = useState([]);
+
+  // const myPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
+  // console.log(myPreset);
+
+  // const avatarNew =
+  //   'https://res.cloudinary.com/dqcmd364w/image/upload/v1729264893/girl-1_kwvcbl.png';
 
   const addUser = async data => {
     try {
@@ -70,7 +77,19 @@ export const Phonebook = () => {
       <s.Container>
         <s.Div>
           <h1>Phonebook</h1>
-          <Logout />
+          <s.Div>
+            <s.Greeting>
+              Welcome, <span>{userName}</span>
+            </s.Greeting>
+            <s.Thumb>
+              <s.Avatar
+                src={avatar ? avatar : noImageIcon}
+                alt={avatar ? `Avatar ${userName}` : 'Default avatar'}
+              />
+            </s.Thumb>
+
+            <Logout />
+          </s.Div>
         </s.Div>
 
         <ContactForm addUser={addUser} />

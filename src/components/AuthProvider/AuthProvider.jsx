@@ -10,7 +10,8 @@ import * as s from './AuthProvider.styled';
 export const AuthProvider = () => {
   const auth = getAuth(app);
   const [user, setUser] = useState(auth.currentUser);
-  console.log(user?.displayName);
+  const userName = user?.displayName;
+  const avatar = user?.photoURL;
 
   useEffect(() => {
     onAuthStateChanged(auth, newUser => {
@@ -25,27 +26,8 @@ export const AuthProvider = () => {
     });
   }, [auth]);
 
-  // useEffect(() => {
-  //   const unsub = auth.onAuthStateChanged(newUser => {
-  //     if (newUser != null) {
-  //       setUser(newUser);
-  //     }
-  //   });
-
-  //   return () => unsub();
-  // }, [auth]);
-
-  // const handleSignIn = async () => {
-  //   try {
-  //     const credentials = await signInWithPopup(auth, googleAuthProvider);
-  //     setUser(credentials.user);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   if (user != null) {
-    return <Phonebook />;
+    return <Phonebook userName={userName} avatar={avatar} />;
   }
 
   return (

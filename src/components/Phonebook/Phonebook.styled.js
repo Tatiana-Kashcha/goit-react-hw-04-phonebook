@@ -7,6 +7,7 @@ export const Section = styled.section`
 export const Div = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const Container = styled.div`
@@ -14,8 +15,31 @@ export const Container = styled.div`
   padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 500px;
+  width: 700px;
   h2 {
     padding-top: 20px;
   }
+`;
+
+export const Greeting = styled.p`
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 15px;
+  span {
+    color: rgb(12 80 206);
+  }
+`;
+
+export const Thumb = styled.div`
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  margin-right: 40px;
+`;
+
+export const Avatar = styled.img`
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
