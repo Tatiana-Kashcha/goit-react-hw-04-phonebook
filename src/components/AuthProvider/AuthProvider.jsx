@@ -13,6 +13,8 @@ export const AuthProvider = () => {
   const userName = user?.displayName;
   const avatar = user?.photoURL;
 
+  console.log(auth);
+
   useEffect(() => {
     onAuthStateChanged(auth, newUser => {
       if (newUser) {

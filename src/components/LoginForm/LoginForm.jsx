@@ -20,13 +20,6 @@ export const LoginForm = () => {
     } catch (error) {
       console.log(error);
     }
-
-    // dispatch(
-    //   logIn({
-    //     email: form.elements.email.value,
-    //     password: form.elements.password.value,
-    //   })
-    // );
     form.reset();
   };
 

@@ -12,13 +12,14 @@ import {
   doc,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getAuth, updateProfile } from 'firebase/auth';
 
 import noImageIcon from '../../images/avatar.png';
 import * as s from './Phonebook.styled';
 
 export const Phonebook = ({ userName, avatar }) => {
   const [contacts, setContacts] = useState([]);
-  const [photoURL, setPhotoURL] = useState('');
+  const [photoURL, setPhotoURL] = useState(avatar);
   console.log(photoURL);
 
   const addUser = async data => {
@@ -69,24 +70,68 @@ export const Phonebook = ({ userName, avatar }) => {
     getAllContacts();
   };
 
-  const uploadFile = async file => {
+  // const uploadFile = async file => {
+  //   try {
+  //     // Створення референсу до місця збереження
+  //     const storageRef = ref(storage, `profile_photos/${file.name}`);
+
+  //     // Завантаження файлу
+  //     const snapshot = await uploadBytes(storageRef, file);
+
+  //     // Отримання URL завантаженого файлу
+  //     const downloadURL = await getDownloadURL(snapshot.ref);
+
+  //     console.log('Файл завантажено:', downloadURL);
+  //     setPhotoURL(downloadURL);
+  //   } catch (error) {
+  //     console.error('Помилка завантаження файлу:', error);
+  //   }
+  // };
+
+  // Завантаження фото в Firebase Storage
+  const uploadPhotoToFirebase = async file => {
+    const storageRef = ref(storage, `profile_photos/${file.name}`);
+
     try {
-      // Створення референсу до місця збереження
-      const storageRef = ref(storage, `profile_photos/${file.name}`);
+      // Завантажити файл
+      await uploadBytes(storageRef, file);
 
-      // Завантаження файлу
-      const snapshot = await uploadBytes(storageRef, file);
-
-      // Отримання URL завантаженого файлу
-      const downloadURL = await getDownloadURL(snapshot.ref);
-
-      console.log('Файл завантажено:', downloadURL);
+      const downloadURL = await getDownloadURL(storageRef);
       setPhotoURL(downloadURL);
-      // return downloadURL;
+
+      console.log('Фото завантажено:', downloadURL);
     } catch (error) {
-      console.error('Помилка завантаження файлу:', error);
+      console.error('Помилка завантаження фото:', error);
     }
   };
+
+  const handleFileChange = async event => {
+    const file = event.target.files[0];
+    if (file) {
+      await uploadPhotoToFirebase(file);
+    }
+  };
+
+  // Відкрити вибір файлу
+  const handlePhotoClick = () => {
+    document.getElementById('fileInput').click();
+  };
+
+  const updateUserProfilePhoto = async photoURL => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      await updateProfile(auth.currentUser, { photoURL: photoURL });
+      console.log('Profile photo updated successfully!');
+    } else {
+      console.log('No user is signed in');
+    }
+  };
+
+  useEffect(() => {
+    updateUserProfilePhoto(photoURL);
+  }, [photoURL]);
 
   return (
     <s.Section>
@@ -101,7 +146,13 @@ export const Phonebook = ({ userName, avatar }) => {
               <s.Avatar
                 src={avatar ? avatar : noImageIcon}
                 alt={avatar ? `Avatar ${userName}` : 'Default avatar'}
-                onClick={uploadFile}
+                onClick={handlePhotoClick}
+              />
+              <s.Upload
+                id="fileInput"
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
               />
             </s.Thumb>
 

@@ -35,6 +35,8 @@ export const Thumb = styled.div`
   height: 38px;
   border-radius: 50%;
   margin-right: 40px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Avatar = styled.img`
@@ -43,4 +45,8 @@ export const Avatar = styled.img`
   height: 100%;
   object-fit: cover;
   cursor: pointer;
+`;
+
+export const Upload = styled.input`
+  visibility: hidden;
 `;
