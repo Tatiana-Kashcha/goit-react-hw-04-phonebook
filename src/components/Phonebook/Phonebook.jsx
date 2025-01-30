@@ -115,7 +115,7 @@ export const Phonebook = ({ userName, avatar }) => {
             <s.Thumb>
               <s.Avatar
                 src={photoURL ? photoURL : noImageIcon}
-                alt={avatar ? `Avatar ${userName}` : 'Default avatar'}
+                alt={photoURL ? `Avatar ${userName}` : 'Default avatar'}
                 onClick={handlePhotoClick}
               />
               <s.Upload
