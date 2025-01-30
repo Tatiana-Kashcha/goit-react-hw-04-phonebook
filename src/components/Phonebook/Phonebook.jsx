@@ -22,6 +22,8 @@ export const Phonebook = ({ userName, avatar }) => {
   const [photoURL, setPhotoURL] = useState(avatar);
   console.log(photoURL);
 
+  const auth = getAuth();
+
   const addUser = async data => {
     try {
       const isDuplicateUser = contacts.some(
@@ -70,24 +72,6 @@ export const Phonebook = ({ userName, avatar }) => {
     getAllContacts();
   };
 
-  // const uploadFile = async file => {
-  //   try {
-  //     // Створення референсу до місця збереження
-  //     const storageRef = ref(storage, `profile_photos/${file.name}`);
-
-  //     // Завантаження файлу
-  //     const snapshot = await uploadBytes(storageRef, file);
-
-  //     // Отримання URL завантаженого файлу
-  //     const downloadURL = await getDownloadURL(snapshot.ref);
-
-  //     console.log('Файл завантажено:', downloadURL);
-  //     setPhotoURL(downloadURL);
-  //   } catch (error) {
-  //     console.error('Помилка завантаження файлу:', error);
-  //   }
-  // };
-
   // Завантаження фото в Firebase Storage
   const uploadPhotoToFirebase = async file => {
     const storageRef = ref(storage, `profile_photos/${file.name}`);
@@ -98,10 +82,12 @@ export const Phonebook = ({ userName, avatar }) => {
 
       const downloadURL = await getDownloadURL(storageRef);
       setPhotoURL(downloadURL);
-
       console.log('Фото завантажено:', downloadURL);
+
+      await updateProfile(auth.currentUser, { photoURL: downloadURL });
+      console.log('Profile photo updated successfully!');
     } catch (error) {
-      console.error('Помилка завантаження фото:', error);
+      console.error(error);
     }
   };
 
@@ -117,22 +103,6 @@ export const Phonebook = ({ userName, avatar }) => {
     document.getElementById('fileInput').click();
   };
 
-  const updateUserProfilePhoto = async photoURL => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (user) {
-      await updateProfile(auth.currentUser, { photoURL: photoURL });
-      console.log('Profile photo updated successfully!');
-    } else {
-      console.log('No user is signed in');
-    }
-  };
-
-  useEffect(() => {
-    updateUserProfilePhoto(photoURL);
-  }, [photoURL]);
-
   return (
     <s.Section>
       <s.Container>
@@ -144,7 +114,7 @@ export const Phonebook = ({ userName, avatar }) => {
             </s.Greeting>
             <s.Thumb>
               <s.Avatar
-                src={avatar ? avatar : noImageIcon}
+                src={photoURL ? photoURL : noImageIcon}
                 alt={avatar ? `Avatar ${userName}` : 'Default avatar'}
                 onClick={handlePhotoClick}
               />

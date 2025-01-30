@@ -41,8 +41,8 @@ export const Thumb = styled.div`
 
 export const Avatar = styled.img`
   border-radius: 50%;
-  width: 100%;
-  height: 100%;
+  min-width: 38px;
+  min-height: 38px;
   object-fit: cover;
   cursor: pointer;
 `;
