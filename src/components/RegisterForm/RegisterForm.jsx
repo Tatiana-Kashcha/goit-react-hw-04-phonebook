@@ -42,7 +42,9 @@ export const RegisterForm = () => {
         Password
         <input type="password" name="password" required />
       </s.Label>
-      <button type="submit">Register</button>
+      <s.Div>
+        <button type="submit">Register</button>
+      </s.Div>
     </s.Form>
   );
 };

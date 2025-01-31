@@ -10,8 +10,6 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 400px;
-  /* display: flex;
-  justify-content: center; */
 `;
 
 export const ButtonAuth = styled.button`

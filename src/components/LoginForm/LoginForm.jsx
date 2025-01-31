@@ -33,7 +33,9 @@ export const LoginForm = () => {
         Password
         <input type="password" name="password" required />
       </s.Label>
-      <button type="submit">Log In</button>
+      <s.Div>
+        <button type="submit">Log In</button>
+      </s.Div>
     </s.Form>
   );
 };
