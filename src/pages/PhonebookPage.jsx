@@ -1,7 +1,7 @@
 import { Phonebook } from 'components/Phonebook/Phonebook';
 
-const PhonebookPage = () => {
-  return <Phonebook />;
+const PhonebookPage = ({ user }) => {
+  return <Phonebook user={user} />;
 };
 
 export default PhonebookPage;

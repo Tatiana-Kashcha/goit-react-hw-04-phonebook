@@ -15,16 +15,9 @@ import {
 
 import * as s from './Phonebook.styled';
 
-export const Phonebook = ({ userName, avatar, user }) => {
+export const Phonebook = ({ user }) => {
   const [contacts, setContacts] = useState([]);
-
-  console.log(user);
-
-  const displayName = user.displayName;
-  console.log(displayName);
-
-  const photoURL = user.photoURL;
-  console.log(photoURL);
+  const userName = user?.displayName;
 
   const addUser = async data => {
     try {
@@ -83,7 +76,7 @@ export const Phonebook = ({ userName, avatar, user }) => {
             <s.Greeting>
               Welcome, <span>{userName}</span>
             </s.Greeting>
-            <UserAvatar avatar={avatar} userName={userName} />
+            <UserAvatar user={user} />
 
             <Logout />
           </s.Div>
