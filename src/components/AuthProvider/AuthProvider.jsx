@@ -13,7 +13,7 @@ export const AuthProvider = () => {
   const userName = user?.displayName;
   const avatar = user?.photoURL;
 
-  console.log(auth);
+  console.log(user);
 
   useEffect(() => {
     onAuthStateChanged(auth, newUser => {
@@ -29,7 +29,7 @@ export const AuthProvider = () => {
   }, [auth]);
 
   if (user != null) {
-    return <Phonebook userName={userName} avatar={avatar} />;
+    return <Phonebook userName={userName} avatar={avatar} user={user} />;
   }
 
   return (

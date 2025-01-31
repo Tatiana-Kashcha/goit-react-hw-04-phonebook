@@ -13,7 +13,7 @@ export const RegisterForm = () => {
     const form = e.currentTarget;
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         form.elements.email.value,
         form.elements.password.value
@@ -21,8 +21,6 @@ export const RegisterForm = () => {
       await updateProfile(auth.currentUser, {
         displayName: form.elements.name.value,
       });
-      console.log(userCredential);
-      console.log(userCredential.user.displayName);
     } catch (error) {
       console.log(error);
     }

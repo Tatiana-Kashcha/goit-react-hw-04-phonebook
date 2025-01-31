@@ -15,8 +15,16 @@ import {
 
 import * as s from './Phonebook.styled';
 
-export const Phonebook = ({ userName, avatar }) => {
+export const Phonebook = ({ userName, avatar, user }) => {
   const [contacts, setContacts] = useState([]);
+
+  console.log(user);
+
+  const displayName = user.displayName;
+  console.log(displayName);
+
+  const photoURL = user.photoURL;
+  console.log(photoURL);
 
   const addUser = async data => {
     try {
