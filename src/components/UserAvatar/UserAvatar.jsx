@@ -9,7 +9,6 @@ import * as s from './UserAvatar.styled';
 
 export const UserAvatar = ({ avatar, userName }) => {
   const [photoURL, setPhotoURL] = useState(avatar);
-  console.log(photoURL);
 
   const auth = getAuth();
 
@@ -23,7 +22,7 @@ export const UserAvatar = ({ avatar, userName }) => {
 
       const downloadURL = await getDownloadURL(storageRef);
       setPhotoURL(downloadURL);
-      console.log('Фото завантажено:', downloadURL);
+      console.log('Photo downloaded:', downloadURL);
 
       await updateProfile(auth.currentUser, { photoURL: downloadURL });
       console.log('Profile photo updated successfully!');
