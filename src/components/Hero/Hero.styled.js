@@ -16,16 +16,16 @@ export const StyledLink = styled(NavLink)`
   text-decoration: none;
   padding: 10px 0;
   font-size: 18px;
-  color: rgb(107 75 31);
+  color: rgb(126 79 15);
   font-weight: bold;
-  border: 1px solid rgb(107 75 31);
+  border: 1px solid rgb(126 79 15);
   border-radius: 4px;
   min-width: 100px;
   text-align: center;
   cursor: pointer;
   background-color: rgb(242 228 178);
   &:hover {
-    background-color: rgb(107 75 31);
+    background-color: rgb(126 79 15);
     color: rgb(242 228 178);
   }
 `;
