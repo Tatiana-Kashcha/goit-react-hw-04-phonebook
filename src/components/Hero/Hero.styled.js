@@ -31,7 +31,7 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const List = styled.ul`
-  margin-top: 40%;
+  margin-top: 35%;
   display: flex;
   list-style: none;
   li {
