@@ -15,17 +15,20 @@ const PhonebookPage = lazy(() => import('../pages/PhonebookPage'));
 export const App = () => {
   const auth = getAuth(app);
   const [user, setUser] = useState(auth.currentUser);
+  console.log(auth);
 
   useEffect(() => {
     onAuthStateChanged(auth, newUser => {
-      if (newUser) {
-        setUser(newUser);
-        console.log('user is logged in');
-        console.log(newUser); // user object
-      } else {
-        console.log('user is not logged in');
-        console.log(newUser); // null
-      }
+      setUser(newUser);
+      // if (newUser) {
+      //   setUser(newUser);
+      //   console.log('user is logged in');
+      //   console.log(newUser); // user object
+      // } else {
+      //   setUser(newUser);
+      //   console.log('user is not logged in');
+      //   console.log(newUser); // null
+      // }
     });
   }, [auth]);
 
