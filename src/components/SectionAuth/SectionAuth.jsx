@@ -1,6 +1,6 @@
-import * as s from './Section.styled';
+import * as s from './SectionAuth.styled';
 
-export const Section = ({ title, children }) => (
+export const SectionAuth = ({ title, children }) => (
   <s.Section>
     <s.Container>
       <s.StyledLink to="/">{'<<'} HOME</s.StyledLink>

@@ -1,11 +1,11 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
-import { Section } from 'components/Section/Section';
+import { SectionAuth } from 'components/SectionAuth/SectionAuth';
 
 const LoginPage = () => {
   return (
-    <Section title="Please login">
+    <SectionAuth title="Please login">
       <LoginForm />
-    </Section>
+    </SectionAuth>
   );
 };
 

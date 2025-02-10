@@ -1,11 +1,11 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
-import { Section } from 'components/Section/Section';
+import { SectionAuth } from 'components/SectionAuth/SectionAuth';
 
 const RegisterPage = () => {
   return (
-    <Section title="Please register">
+    <SectionAuth title="Please register">
       <RegisterForm />
-    </Section>
+    </SectionAuth>
   );
 };
 
