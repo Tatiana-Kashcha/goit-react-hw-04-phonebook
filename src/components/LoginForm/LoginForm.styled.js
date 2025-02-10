@@ -13,6 +13,7 @@ export const Form = styled.form`
   margin-top: 20px;
   border: 2px solid rgb(12 80 206);
   border-radius: 4px;
+  background-color: #ffffff;
   button {
     padding: 10px 0;
     font-size: 18px;
