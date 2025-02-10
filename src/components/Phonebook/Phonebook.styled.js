@@ -17,7 +17,7 @@ export const Container = styled.div`
   margin-right: auto;
   width: 700px;
   h2 {
-    padding-top: 20px;
+    margin-top: 20px;
   }
 `;
 

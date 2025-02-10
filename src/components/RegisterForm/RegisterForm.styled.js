@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+`;
+
 export const Form = styled.form`
   padding: 10px;
   margin-top: 20px;

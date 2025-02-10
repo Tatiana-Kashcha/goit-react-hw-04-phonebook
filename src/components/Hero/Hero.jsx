@@ -2,7 +2,7 @@ import * as s from './Hero.styled';
 
 export const Hero = () => {
   return (
-    <>
+    <s.Container>
       <s.Thumb>
         <s.List>
           <li>
@@ -13,6 +13,6 @@ export const Hero = () => {
           </li>
         </s.List>
       </s.Thumb>
-    </>
+    </s.Container>
   );
 };

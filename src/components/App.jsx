@@ -4,7 +4,7 @@ import { app } from '../firebase/firebaseConfig';
 
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
-import { Layout } from './Layout/Layout';
+import { Layout } from './Layout';
 import { RestrictedRoute } from './RestrictedRoute';
 
 const HomePage = lazy(() => import('../pages/Home'));
@@ -15,20 +15,15 @@ const PhonebookPage = lazy(() => import('../pages/PhonebookPage'));
 export const App = () => {
   const auth = getAuth(app);
   const [user, setUser] = useState(auth.currentUser);
-  console.log(auth);
 
   useEffect(() => {
     onAuthStateChanged(auth, newUser => {
       setUser(newUser);
-      // if (newUser) {
-      //   setUser(newUser);
-      //   console.log('user is logged in');
-      //   console.log(newUser); // user object
-      // } else {
-      //   setUser(newUser);
-      //   console.log('user is not logged in');
-      //   console.log(newUser); // null
-      // }
+      if (newUser) {
+        console.log('user is logged in');
+      } else {
+        console.log('user is not logged in');
+      }
     });
   }, [auth]);
 

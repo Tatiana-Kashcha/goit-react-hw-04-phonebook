@@ -2,6 +2,14 @@ import { NavLink } from 'react-router-dom';
 import phoneBookHero from '../../images/phoneBookHero.jpg';
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+`;
+
 export const Thumb = styled.div`
   display: flex;
   justify-content: center;

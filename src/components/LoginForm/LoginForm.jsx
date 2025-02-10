@@ -24,18 +24,20 @@ export const LoginForm = () => {
   };
 
   return (
-    <s.Form onSubmit={handleSubmit} autoComplete="off">
-      <s.Label>
-        Email
-        <input type="email" name="email" required />
-      </s.Label>
-      <s.Label>
-        Password
-        <input type="password" name="password" required />
-      </s.Label>
-      <s.Div>
-        <button type="submit">Log In</button>
-      </s.Div>
-    </s.Form>
+    <s.Container>
+      <s.Form onSubmit={handleSubmit} autoComplete="off">
+        <s.Label>
+          Email
+          <input type="email" name="email" required />
+        </s.Label>
+        <s.Label>
+          Password
+          <input type="password" name="password" required />
+        </s.Label>
+        <s.Div>
+          <button type="submit">Log In</button>
+        </s.Div>
+      </s.Form>
+    </s.Container>
   );
 };

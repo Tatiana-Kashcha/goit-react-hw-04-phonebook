@@ -3,11 +3,9 @@ import { Section } from 'components/Section/Section';
 
 const RegisterPage = () => {
   return (
-    <>
-      <Section title="Please register">
-        <RegisterForm />
-      </Section>
-    </>
+    <Section title="Please register">
+      <RegisterForm />
+    </Section>
   );
 };
 
