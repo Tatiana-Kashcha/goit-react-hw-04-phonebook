@@ -16,6 +16,7 @@ const PhonebookPage = lazy(() => import('../pages/PhonebookPage'));
 export const App = () => {
   const auth = getAuth(app);
   const [user, setUser] = useState(auth.currentUser);
+  console.log(user);
 
   useEffect(() => {
     onAuthStateChanged(auth, newUser => {
