@@ -6,6 +6,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import { Layout } from './Layout';
 import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -51,7 +52,16 @@ export const App = () => {
             />
           }
         />
-        <Route path="phonebook" element={<PhonebookPage user={user} />} />
+        <Route
+          path="phonebook"
+          element={
+            <PrivateRoute
+              redirectTo="/login"
+              component={<PhonebookPage user={user} />}
+              user={user}
+            />
+          }
+        />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

@@ -10,13 +10,10 @@ import * as s from './UserAvatar.styled';
 export const UserAvatar = ({ user }) => {
   const auth = getAuth();
 
-  console.log(user);
   const userName = user?.displayName;
   const avatar = user?.photoURL;
-  console.log(avatar);
 
   const [photoURL, setPhotoURL] = useState(avatar);
-  console.log(photoURL);
 
   // Завантаження фото в Firebase Storage
   const uploadPhotoToFirebase = async file => {
