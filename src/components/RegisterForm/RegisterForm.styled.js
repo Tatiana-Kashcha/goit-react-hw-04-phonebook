@@ -11,9 +11,12 @@ export const Container = styled.div`
 export const Form = styled.form`
   padding: 10px;
   margin-top: 20px;
-  border: 2px solid rgb(12 80 206);
+  /* border: 2px solid rgb(12 80 206); */
   border-radius: 4px;
   background-color: #ffffff;
+  -webkit-box-shadow: 23px 20px 39px 17px rgba(12, 80, 206, 0.64);
+  -moz-box-shadow: 23px 20px 39px 17px rgba(12, 80, 206, 0.64);
+  box-shadow: 23px 20px 39px 17px rgba(12, 80, 206, 0.64);
   button {
     padding: 10px 0;
     font-size: 18px;
