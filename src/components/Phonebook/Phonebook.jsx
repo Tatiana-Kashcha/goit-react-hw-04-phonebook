@@ -19,6 +19,13 @@ export const Phonebook = ({ user }) => {
   const [contacts, setContacts] = useState([]);
   const userName = user?.displayName;
 
+  // const [userName, setUserName] = useState(user?.displayName);
+
+  // useEffect(() => {
+  //   const auth = getAuth();
+  //   setUserName(auth.currentUser?.displayName);
+  // }, []);
+
   const addUser = async data => {
     try {
       const isDuplicateUser = contacts.some(
