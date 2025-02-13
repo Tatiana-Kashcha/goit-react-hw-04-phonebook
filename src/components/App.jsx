@@ -25,13 +25,14 @@ export const App = () => {
   useEffect(() => {
     onAuthStateChanged(auth, newUser => {
       setUser(newUser);
-      setLoading(false);
 
       if (newUser) {
         console.log('user is logged in');
       } else {
         console.log('user is not logged in');
       }
+
+      setLoading(false);
     });
   }, [auth]);
 

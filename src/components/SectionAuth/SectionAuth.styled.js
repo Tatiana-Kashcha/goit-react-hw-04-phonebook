@@ -30,7 +30,7 @@ export const StyledLink = styled(NavLink)`
   min-width: 100px;
   text-align: center;
   cursor: pointer;
-  background-color: rgb(242 228 178);
+  background-color: rgb(244 224 210);
   &:hover {
     background-color: rgb(207 87 30);
     color: rgb(242 228 178);

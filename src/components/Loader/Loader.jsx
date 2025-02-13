@@ -17,7 +17,7 @@ const Loader = () => {
           '#4aeee6',
           '#e689ee',
           '#f55e07',
-          '#fcae55',
+          '#f7b844',
         ]}
       />
     </s.LoaderStyle>
