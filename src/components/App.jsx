@@ -7,6 +7,7 @@ import { lazy } from 'react';
 import { Layout } from './Layout';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import Loader from './Loader/Loader';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -16,11 +17,16 @@ const PhonebookPage = lazy(() => import('../pages/PhonebookPage'));
 export const App = () => {
   const auth = getAuth(app);
   const [user, setUser] = useState(auth.currentUser);
-  console.log(user);
+  console.log('user', user);
+
+  const [loading, setLoading] = useState(true);
+  console.log('loading', loading);
 
   useEffect(() => {
     onAuthStateChanged(auth, newUser => {
       setUser(newUser);
+      setLoading(false);
+
       if (newUser) {
         console.log('user is logged in');
       } else {
@@ -29,7 +35,9 @@ export const App = () => {
     });
   }, [auth]);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
