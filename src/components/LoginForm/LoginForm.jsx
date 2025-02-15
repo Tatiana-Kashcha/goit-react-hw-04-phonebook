@@ -27,9 +27,9 @@ export const LoginForm = () => {
         form.elements.email.value,
         form.elements.password.value
       );
-      if (userCredential) {
-        Notify.success('Login is complete');
-      }
+      // if (userCredential) {
+      //   Notify.success('Login is complete');
+      // }
       console.log(userCredential);
     } catch (error) {
       console.log(error);

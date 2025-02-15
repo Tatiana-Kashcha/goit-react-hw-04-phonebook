@@ -34,7 +34,7 @@ export const RegisterForm = () => {
       await updateProfile(auth.currentUser, {
         displayName: form.elements.name.value,
       });
-      Notify.success('Register is complete');
+      // Notify.success('Register is complete');
     } catch (error) {
       console.log(error);
       Notify.failure('Register error. Email already in use.');
