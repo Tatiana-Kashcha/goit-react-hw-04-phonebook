@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import * as s from './RegisterForm.styled';
 
 export const RegisterForm = () => {
@@ -21,11 +22,13 @@ export const RegisterForm = () => {
       await updateProfile(auth.currentUser, {
         displayName: form.elements.name.value,
       });
+      Notify.success('Register is complete');
     } catch (error) {
       console.log(error);
+      Notify.failure('Register error. Email already in use.');
     }
 
-    form.reset();
+    // form.reset();
   };
 
   return (
