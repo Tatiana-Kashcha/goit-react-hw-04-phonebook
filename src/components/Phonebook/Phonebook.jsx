@@ -16,22 +16,17 @@ import { getAuth } from 'firebase/auth';
 
 import * as s from './Phonebook.styled';
 
-export const Phonebook = ({ user }) => {
+export const Phonebook = ({ user, loading }) => {
   const [contacts, setContacts] = useState([]);
-  const [userName, setUserName] = useState(user?.displayName);
 
-  const auth = getAuth();
+  const userName = user?.displayName;
+  console.log('loading', loading);
 
   useEffect(() => {
-    (async () => {
-      try {
-        await auth.currentUser.reload();
-        setUserName(auth.currentUser?.displayName);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [auth.currentUser]);
+    const updatedUser = getAuth().currentUser;
+
+    console.log('name', updatedUser);
+  }, [loading]);
 
   const addUser = async data => {
     try {
