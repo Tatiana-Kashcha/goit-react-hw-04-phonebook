@@ -67,7 +67,7 @@ export const App = () => {
           element={
             <PrivateRoute
               redirectTo="/login"
-              component={<PhonebookPage user={user} loading={loading} />}
+              component={<PhonebookPage user={user} />}
               user={user}
             />
           }

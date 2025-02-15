@@ -12,20 +12,17 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
 
 import * as s from './Phonebook.styled';
 
-export const Phonebook = ({ user, loading }) => {
+export const Phonebook = ({ user }) => {
   const [contacts, setContacts] = useState([]);
 
   const userName = user?.displayName;
 
-  useEffect(() => {
-    const updatedUser = getAuth().currentUser;
-
-    console.log('name', updatedUser);
-  }, [loading]);
+  if (!userName) {
+    window.location.reload();
+  }
 
   const addUser = async data => {
     try {
