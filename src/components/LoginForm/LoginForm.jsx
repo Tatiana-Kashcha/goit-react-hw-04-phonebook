@@ -18,8 +18,9 @@ export const LoginForm = () => {
       console.log(userCredential);
     } catch (error) {
       console.log(error);
+      console.log('login error');
     }
-    form.reset();
+    // form.reset();
   };
 
   return (

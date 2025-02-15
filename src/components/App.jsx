@@ -34,7 +34,7 @@ export const App = () => {
 
       setLoading(false);
     });
-  }, [auth]);
+  }, [auth, auth.currentUser?.displayName]);
 
   return loading ? (
     <Loader />
