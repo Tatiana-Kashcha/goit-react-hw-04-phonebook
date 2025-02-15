@@ -60,3 +60,17 @@ export const Div = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const Password = styled.div`
+  position: relative;
+`;
+
+export const ToggleShowHide = styled.span`
+  position: absolute;
+  width: 30px;
+  right: 18px;
+  top: 30px;
+  cursor: pointer;
+
+  color: rgb(12 80 206);
+`;
