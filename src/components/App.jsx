@@ -28,6 +28,7 @@ export const App = () => {
 
       if (newUser) {
         console.log('user is logged in');
+        console.log('name', auth.currentUser?.displayName);
       } else {
         console.log('user is not logged in');
       }
