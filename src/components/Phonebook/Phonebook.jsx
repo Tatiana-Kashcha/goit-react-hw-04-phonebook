@@ -12,7 +12,7 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+// import { getAuth } from 'firebase/auth';
 
 import * as s from './Phonebook.styled';
 
@@ -20,12 +20,12 @@ export const Phonebook = ({ user, loading }) => {
   const [contacts, setContacts] = useState([]);
 
   const userName = user?.displayName;
-  console.log('loading', loading);
 
   useEffect(() => {
-    const updatedUser = getAuth().currentUser;
+    // const updatedUser = getAuth().currentUser;
 
-    console.log('name', updatedUser);
+    // console.log('name', updatedUser);
+    console.log('loading', loading);
   }, [loading]);
 
   const addUser = async data => {
