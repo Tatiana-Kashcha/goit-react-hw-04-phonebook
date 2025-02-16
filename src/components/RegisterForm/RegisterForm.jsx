@@ -60,6 +60,7 @@ export const RegisterForm = () => {
             <input
               type={showPassword ? 'text' : 'password'}
               name="password"
+              minlength="5"
               required
             />
           </s.Label>
