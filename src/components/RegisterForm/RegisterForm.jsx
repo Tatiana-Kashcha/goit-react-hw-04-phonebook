@@ -37,7 +37,14 @@ export const RegisterForm = () => {
       // Notify.success('Register is complete');
     } catch (error) {
       console.log(error);
-      Notify.failure('Register error. Email already in use.');
+
+      if (error.code === 'auth/email-already-in-use') {
+        Notify.failure('Register error. Email already in use.');
+      } else if (error.code === 'auth/invalid-email') {
+        Notify.failure('Register error. Invalid email.');
+      } else {
+        Notify.failure(error.code);
+      }
     }
 
     // form.reset();
