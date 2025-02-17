@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const List = styled.ol`
   margin-top: 15px;
-  padding: 0 25px;
+  padding-left: 25px;
 `;
 
 export const ListItems = styled.li`

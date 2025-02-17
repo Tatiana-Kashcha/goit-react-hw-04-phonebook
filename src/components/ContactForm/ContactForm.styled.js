@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Form = styled.form`
   padding: 10px;
   margin-top: 20px;
-  border: 1px solid rgb(0, 0, 0);
+  border: 2px solid rgb(34 155 15);
+  border-radius: 4px;
   button {
     padding: 4px 8px;
     font-size: 14px;
@@ -28,10 +29,10 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   input {
-    width: 200px;
+    max-width: 550px;
     padding: 2px;
     margin-top: 6px;
-    border: 1px solid rgb(219, 216, 216);
+    border: 1px solid rgb(34 155 15);
     border-radius: 4px;
     &:focus {
       border-color: rgb(99, 149, 241, 0.6);
