@@ -3,6 +3,7 @@ import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Logout } from 'components/Logout/Logout';
+import { Message } from 'components/Message/Message';
 
 import { db } from '../../firebase/firebaseConfig';
 import {
@@ -88,7 +89,7 @@ export const Phonebook = ({ user }) => {
         </s.Div>
 
         <ContactForm addUser={addUser} />
-        {contacts.length > 0 && (
+        {contacts.length > 0 ? (
           <>
             <h2>Contacts</h2>
             <ContactList
@@ -97,6 +98,8 @@ export const Phonebook = ({ user }) => {
               getAllContacts={getAllContacts}
             />
           </>
+        ) : (
+          <Message text="Your contacts will be here!" />
         )}
       </s.Container>
     </s.Section>
