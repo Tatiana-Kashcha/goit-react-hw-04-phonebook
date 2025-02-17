@@ -12,12 +12,13 @@ export const UserAvatar = ({ user }) => {
 
   const userName = user?.displayName;
   const avatar = user?.photoURL;
+  const userId = user?.uid;
 
   const [photoURL, setPhotoURL] = useState(avatar);
 
   // Завантаження фото в Firebase Storage
   const uploadPhotoToFirebase = async file => {
-    const storageRef = ref(storage, `profile_photos/${file.name}`);
+    const storageRef = ref(storage, `profile_photos/${file.name}_${userId}`);
 
     try {
       // Завантажити файл
