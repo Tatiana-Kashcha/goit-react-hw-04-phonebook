@@ -42,6 +42,8 @@ export const RegisterForm = () => {
         Notify.failure('Register error. Email already in use.');
       } else if (error.code === 'auth/invalid-email') {
         Notify.failure('Register error. Invalid email.');
+      } else if (error.code === 'auth/weak-password') {
+        Notify.failure('Register error. Weak password.');
       } else {
         Notify.failure(error.code);
       }
