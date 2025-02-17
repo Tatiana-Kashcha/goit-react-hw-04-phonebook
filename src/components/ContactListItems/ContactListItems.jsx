@@ -9,6 +9,7 @@ export const ContactListItems = ({
   user: { name, number, id },
   deleteUser,
   getAllContacts,
+  userId,
 }) => {
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -39,6 +40,7 @@ export const ContactListItems = ({
             id={id}
             closeModal={closeModal}
             getAllContacts={getAllContacts}
+            userId={userId}
           />
         </Modal>
       )}

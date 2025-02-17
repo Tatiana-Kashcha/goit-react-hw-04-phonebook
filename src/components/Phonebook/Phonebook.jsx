@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -20,6 +20,7 @@ export const Phonebook = ({ user }) => {
   const [contacts, setContacts] = useState([]);
 
   const userName = user?.displayName;
+  const userId = user?.uid;
 
   if (!userName) {
     window.location.reload();
@@ -36,16 +37,24 @@ export const Phonebook = ({ user }) => {
         return;
       }
 
-      await addDoc(collection(db, 'contacts'), { ...data });
+      const contactsRef = collection(db, 'users', userId, 'contacts');
+      await addDoc(contactsRef, { ...data }); // до списку контактів поточного користувача
+
+      // await addDoc(collection(db, 'contacts'), { ...data }); // до загальної таблиці
     } catch (error) {
       console.log(error);
     }
     getAllContacts();
   };
 
-  const getAllContacts = async () => {
+  const getAllContacts = useCallback(async () => {
+    if (!userId) return;
+
     try {
-      const querySnapshot = await getDocs(collection(db, 'contacts'));
+      const contactsRef = collection(db, 'users', userId, 'contacts');
+      const querySnapshot = await getDocs(contactsRef); // список контактів поточного користувача
+
+      // const querySnapshot = await getDocs(collection(db, 'contacts')); // список із загальної таблиці
       const allContacts = querySnapshot.docs.map(contact => ({
         id: contact.id,
         ...contact.data(),
@@ -58,14 +67,17 @@ export const Phonebook = ({ user }) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     getAllContacts();
-  }, []);
+  }, [getAllContacts]);
 
   const deleteUser = async id => {
-    await deleteDoc(doc(db, 'contacts', id));
+    const contactRef = doc(db, 'users', userId, 'contacts', id);
+    await deleteDoc(contactRef); // із контактів поточного користувача
+
+    // await deleteDoc(doc(db, 'contacts', id)); // із загальної таблиці
     try {
     } catch (error) {
       console.log(error);
@@ -96,6 +108,7 @@ export const Phonebook = ({ user }) => {
               data={contacts}
               deleteUser={deleteUser}
               getAllContacts={getAllContacts}
+              userId={userId}
             />
           </>
         ) : (

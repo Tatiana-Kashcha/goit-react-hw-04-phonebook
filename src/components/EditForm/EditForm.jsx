@@ -11,6 +11,7 @@ export const EditForm = ({
   id,
   closeModal,
   getAllContacts,
+  userId,
 }) => {
   const [name, setName] = useState(editName);
   const [number, setNumber] = useState(editNumber);
@@ -40,7 +41,8 @@ export const EditForm = ({
     e.preventDefault();
 
     try {
-      const contactRef = doc(db, 'contacts', id);
+      const contactRef = doc(db, 'users', userId, 'contacts', id); // у поточного користувача
+      // const contactRef = doc(db, 'contacts', id); // у загальній таблиці
       await setDoc(contactRef, { name, number, id }, { merge: true });
     } catch (error) {
       console.log(error);

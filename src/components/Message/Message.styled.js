@@ -6,5 +6,5 @@ export const Text = styled.h2`
   padding: 20px 0;
   text-align: center;
   color: #b1a9a9;
-  background-color: rgb(216 253 217);
+  background-color: rgba(68, 173, 70, 0.24);
 `;
