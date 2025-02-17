@@ -51,7 +51,7 @@ export const LoginForm = () => {
             <input
               type={showPassword ? 'text' : 'password'}
               name="password"
-              minlength="5"
+              minLength="5"
               required
             />
           </s.Label>
