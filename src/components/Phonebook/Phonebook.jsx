@@ -4,6 +4,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Logout } from 'components/Logout/Logout';
 import { Message } from 'components/Message/Message';
+import { Filter } from 'components/Filter/Filter';
 
 import { db } from '../../firebase/firebaseConfig';
 import {
@@ -18,6 +19,7 @@ import * as s from './Phonebook.styled';
 
 export const Phonebook = ({ user }) => {
   const [contacts, setContacts] = useState([]);
+  const [filter, setFilter] = useState('');
 
   const userName = user?.displayName;
   const userId = user?.uid;
@@ -85,6 +87,18 @@ export const Phonebook = ({ user }) => {
     getAllContacts();
   };
 
+  const handleCangeFilter = e => {
+    setFilter(e.target.value.trim());
+  };
+
+  const searchContactInBook = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
+  const searchContact = searchContactInBook();
+
   return (
     <s.Section>
       <s.Container>
@@ -104,8 +118,9 @@ export const Phonebook = ({ user }) => {
         {contacts.length > 0 ? (
           <>
             <h2>Contacts</h2>
+            <Filter filter={filter} handleCangeFilter={handleCangeFilter} />
             <ContactList
-              data={contacts}
+              data={searchContact}
               deleteUser={deleteUser}
               getAllContacts={getAllContacts}
               userId={userId}
