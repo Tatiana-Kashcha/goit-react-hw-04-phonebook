@@ -23,7 +23,7 @@ export const App = () => {
   console.log('loading', loading);
 
   useEffect(() => {
-    onAuthStateChanged(auth, newUser => {
+    const unsubscribe = onAuthStateChanged(auth, newUser => {
       setUser(newUser);
 
       if (newUser) {
@@ -34,6 +34,8 @@ export const App = () => {
 
       setLoading(false);
     });
+
+    return () => unsubscribe();
   }, [auth]);
 
   return loading ? (
