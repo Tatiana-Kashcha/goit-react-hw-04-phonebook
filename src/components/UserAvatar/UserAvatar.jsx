@@ -50,7 +50,8 @@ export const UserAvatar = ({ user }) => {
   return (
     <s.Thumb>
       <s.Avatar
-        src={photoURL ? photoURL : noImageIcon}
+        src={noImageIcon} // заглушка фото в Firebase Storage до оновлення плану
+        // src={photoURL ? photoURL : noImageIcon}
         alt={photoURL ? `Avatar ${userName}` : 'Default avatar'}
         onClick={handlePhotoClick}
       />
